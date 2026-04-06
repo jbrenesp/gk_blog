@@ -1,5 +1,16 @@
 # README
 
+# GK Blog
+
+This is a simple blog built with Ruby on Rails.
+
+- Rails version: 8.1.3
+- Database: PostgreSQL
+- Features:
+  - Create, read, update, delete posts
+  - MVC structure
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

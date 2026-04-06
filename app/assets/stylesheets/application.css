@@ -8,3 +8,37 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+nav {
+  background-color: #1879da;
+  padding: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  color: #0975e1;
+  text-align: center;
+  margin-top: 30px;
+}
+
+p {
+  color: #0975e1;
+  text-align: center;
+  font-size: 25px;
+}
+
+hr {
+  margin: 10px 0;
+  border: 0;
+  height: 1px;
+  background: #c39c9c;
+}

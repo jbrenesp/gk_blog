@@ -50,3 +50,10 @@ hr {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+
+.post small {
+  display: block;
+  color: #555;
+  font-size: 0.9em;
+  margin-top: 5px;
+}

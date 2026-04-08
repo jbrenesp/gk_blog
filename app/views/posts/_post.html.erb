@@ -6,6 +6,8 @@
 
   <!-- Show created date -->
   <small>Posted on <%= post.created_at.strftime("%b %d, %Y at %H:%M") %></small>
+  <!-- Show likes -->
+  <p>Likes: <%= post.likes %></p>
 
   <p>
     <%= link_to "Read more", post %>

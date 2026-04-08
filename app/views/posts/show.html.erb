@@ -11,4 +11,8 @@
   <%= link_to "Back to posts", posts_path %>
 
   <%= button_to "Destroy this post", @post, method: :delete %>
-</div>
+  
+  <p>Likes: <%= @post.likes %></p>
+  
+  <%= button_to "Like 👍", like_post_path(@post), method: :post %>
+  </div>

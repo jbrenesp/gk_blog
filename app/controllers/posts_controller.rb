@@ -10,6 +10,13 @@ class PostsController < ApplicationController
   def show
   end
 
+  def like
+    @post = Post.find(params[:id])
+    @post.increment!(:likes)
+    redirect_to @post
+  end
+
+
   # GET /posts/new
   def new
     @post = Post.new

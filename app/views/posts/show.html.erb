@@ -1,6 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @post %>
+<h1><%= @post.title %></h1>
+
+<p><%= @post.body %></p>
+
+<small>Posted on <%= @post.created_at.strftime("%b %d, %Y at %H:%M") %></small>
 
 <div>
   <%= link_to "Edit this post", edit_post_path(@post) %> |

@@ -12,7 +12,14 @@ class PostsController < ApplicationController
 
   def like
     @post = Post.find(params[:id])
-    @post.increment!(:likes)
+
+    session[:liked_posts] ||= []
+
+    unless session[:liked_posts].include?(@post.id)
+      @post.increment!(:likes)
+      session[:liked_posts] << @post.id
+    end
+
     redirect_to @post
   end
 

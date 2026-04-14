@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get "pages/home"
   root "pages#home"
+
+  resources :users, only: [:new, :create]
+  
   resources :posts do
     post "like", on: :member
   end

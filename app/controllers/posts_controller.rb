@@ -54,6 +54,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def publish
+    @post = Post.find(params[:id])
+    Rails.logger.debug "CURRENT USER ADMIN? #{current_user.admin?}"
+    if current_user.admin?
+      @post.update(published: true)
+      Rails.logger.debug "POST UPDATED: #{@post.published}"
+      redirect_to @post, notice: "Post published!"
+    else
+      redirect_to @post, alert: "Not authorized"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -64,4 +76,6 @@ class PostsController < ApplicationController
     def post_params
       params.expect(post: [ :title, :body ])
     end
+
+    
 end

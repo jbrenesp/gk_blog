@@ -26,8 +26,11 @@
   <body>
     <header>
       <nav>
+        <%= link_to "Home", root_path %>
+
         <% if user_signed_in? %>
-          <span>Logged in as <strong><%= current_user.email %></strong></span>
+          <%= link_to "New Post", new_post_path %>
+          <span>Logged in as <strong><%= current_user.email %></strong> (<%= current_user.role %>)</span>
           
           <%= link_to "Logout",
             destroy_user_session_path,
@@ -36,8 +39,8 @@
         <% else %>
           <%= link_to "Login", new_user_session_path %>
           <%= link_to "Sign up", new_user_registration_path %>
-      <% end %>
-    </nav>
+        <% end %>
+      </nav>
   </header>
   
     <p class="notice"><%= notice %></p>

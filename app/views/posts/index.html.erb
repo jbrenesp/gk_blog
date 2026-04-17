@@ -1,16 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Posts" %>
+<% content_for :title, "Home" %>
 
-<h1>Posts</h1>
+<h1>GLASS BLOG</h1>
 
 <div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <div>
+        <h2><%= link_to post.title, post %></h2>
+        <p>By <%= post.user.email %></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No published posts yet.</p>
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+<% if user_signed_in? %>
+  <%= link_to "New Post", new_post_path %>
+<% end %>

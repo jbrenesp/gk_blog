@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :authorize_user!, only: %i[edit update destroy]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.where(published: true)
+    @posts = Post.where(status: :published)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -56,15 +57,18 @@ class PostsController < ApplicationController
 
   def publish
     @post = Post.find(params[:id])
-    Rails.logger.debug "CURRENT USER ADMIN? #{current_user.admin?}"
+    
     if current_user.admin?
-      @post.update(published: true)
-      Rails.logger.debug "POST UPDATED: #{@post.published}"
+      @post.update(status: :published)
       redirect_to @post, notice: "Post published!"
     else
       redirect_to @post, alert: "Not authorized"
     end
   end
+
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -76,6 +80,12 @@ class PostsController < ApplicationController
     def post_params
       params.expect(post: [ :title, :body ])
     end
+
+      def authorize_user!
+        unless current_user.admin? || @post.user == current_user
+          redirect_to posts_path, alert: "Not authorized."
+        end
+      end
 
     
 end

@@ -57,7 +57,7 @@ class PostsController < ApplicationController
 
   def publish
     @post = Post.find(params[:id])
-    
+
     if current_user.admin?
       @post.update(status: :published)
       redirect_to @post, notice: "Post published!"
@@ -78,14 +78,12 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.expect(post: [ :title, :body ])
+      params.expect(post: [ :title, :body, images: [] ])
     end
 
-      def authorize_user!
-        unless current_user.admin? || @post.user == current_user
-          redirect_to posts_path, alert: "Not authorized."
-        end
+    def authorize_user!
+      unless current_user.admin? || @post.user == current_user
+        redirect_to posts_path, alert: "Not authorized."
       end
-
-    
+    end
 end

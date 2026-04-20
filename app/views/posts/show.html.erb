@@ -2,6 +2,14 @@
 
 <%= render @post %>
 
+<% if @post.images.attached? %>
+  <div>
+    <% @post.images.each do |image| %>
+      <%= image_tag image, style: "width: 300px; margin: 5px;" %>
+    <% end %>
+  </div>
+<% end %>
+
 <div>
   <%= link_to "Back to posts", posts_path %>
 

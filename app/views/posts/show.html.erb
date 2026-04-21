@@ -21,6 +21,32 @@
 </div>
 
 <div>
+  <h3>Comments (<%= @post.comments.count %>)</h3>
+
+  <% @post.comments.each do |comment| %>
+    <div>
+      <p><%= comment.body %></p>
+      <small>Posted on <%= comment.created_at.strftime("%B %d, %Y") %></small>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= button_to "Delete", post_comment_path(@post, comment), method: :delete %>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
+
+  <h4>Leave a comment</h4>
+  <%= form_with model: [@post, Comment.new] do |form| %>
+    <div>
+      <%= form.label :body, "Your comment" %>
+      <%= form.text_area :body, rows: 4 %>
+    </div>
+    <div>
+      <%= form.submit "Post Comment" %>
+    </div>
+  <% end %>
+</div>
+
+<div>
   <%= link_to "Back to posts", posts_path %>
 
   <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>

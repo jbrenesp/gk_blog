@@ -11,6 +11,16 @@
 <% end %>
 
 <div>
+  <p>❤️ <%= @post.likes.count %> likes</p>
+
+  <% if @post.likes.exists?(ip_address: request.remote_ip) %>
+    <%= button_to "Unlike", post_like_path(@post, @post.likes.find_by(ip_address: request.remote_ip)), method: :delete %>
+  <% else %>
+    <%= button_to "Like ❤️", post_likes_path(@post), method: :post %>
+  <% end %>
+</div>
+
+<div>
   <%= link_to "Back to posts", posts_path %>
 
   <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>

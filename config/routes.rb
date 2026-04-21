@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  get "likes/create"
+  get "likes/destroy"
   devise_for :users, path: "auth", path_names: { sign_in: "login", sign_up: "register" }
   root "posts#index"
   resources :posts do
     member do
       patch :publish
     end
+    resources :likes, only: [ :create, :destroy ]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

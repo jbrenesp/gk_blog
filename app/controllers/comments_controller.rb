@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @post, notice: "Comment added!"
     else
-      redirect_to @post, alert: "Comment could not be saved."
+      redirect_to @post, alert: @comment.errors.full_messages.to_sentence
     end
   end
 
@@ -27,6 +27,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :name, :email)
   end
 end

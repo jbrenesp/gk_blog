@@ -1,6 +1,10 @@
 class Comment < ApplicationRecord
   belongs_to :post
 
+  validates :name, presence: true
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :body, presence: true
+
   BANNED_WORDS = %w[fuck shit ass bitch bastard damn].freeze
 
   LEETSPEAK = {

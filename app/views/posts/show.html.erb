@@ -25,9 +25,11 @@
 
   <% @post.comments.each do |comment| %>
     <div>
+      <strong><%= comment.name %></strong>
       <p><%= comment.body %></p>
       <small>Posted on <%= comment.created_at.strftime("%B %d, %Y") %></small>
       <% if user_signed_in? && current_user.admin? %>
+        <small>📧 <%= comment.email %></small>
         <%= button_to "Delete", post_comment_path(@post, comment), method: :delete %>
       <% end %>
     </div>
@@ -36,6 +38,15 @@
 
   <h4>Leave a comment</h4>
   <%= form_with model: [@post, Comment.new] do |form| %>
+    
+    <div>
+      <%= form.label :name, "Your name" %>
+      <%= form.text_field :name %>
+    </div>
+    <div>
+      <%= form.label :email, "Your email (won't be displayed)" %>
+      <%= form.email_field :email %>
+    </div>
     <div>
       <%= form.label :body, "Your comment" %>
       <%= form.text_area :body, rows: 4 %>

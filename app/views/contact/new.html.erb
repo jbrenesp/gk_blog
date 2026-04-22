@@ -1,0 +1,28 @@
+<% content_for :title, "Contact" %>
+
+<h1>Contact Us</h1>
+
+<% if alert %>
+  <p style="color: red"><%= alert %></p>
+<% end %>
+
+<%= form_with url: contact_path, method: :post do |form| %>
+  <div>
+    <%= form.label :name, "Your name" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email, "Your email" %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :message, "Your message" %>
+    <%= form.text_area :message, rows: 6 %>
+  </div>
+
+  <div>
+    <%= form.submit "Send Message" %>
+  </div>
+<% end %>

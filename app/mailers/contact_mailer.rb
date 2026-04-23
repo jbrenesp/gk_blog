@@ -5,7 +5,7 @@ class ContactMailer < ApplicationMailer
     @message = message
 
     mail(
-      to: "andri_k89@hotmail.com",
+      to: "andrea.koulouvaris@gmail.com",
       from: email,
       reply_to: email,
       subject: "New contact message from #{name}"

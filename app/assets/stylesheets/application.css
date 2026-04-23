@@ -8,3 +8,321 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+/*
+ * Application Styles
+ */
+
+/* ---- Google Font ---- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+
+/* ---- Reset & Base ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #222;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ---- Layout ---- */
+main, .main-content {
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+/* ---- Navbar ---- */
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #222;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #555;
+}
+
+nav span {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* ---- Hero ---- */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* ---- Post Cards ---- */
+.post-card {
+  border-bottom: 1px solid #eee;
+  padding: 2rem 0;
+}
+
+.post-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-card h2 a {
+  text-decoration: none;
+  color: #222;
+}
+
+.post-card h2 a:hover {
+  color: #555;
+}
+
+.post-meta {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.post-snippet {
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.read-more {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #222;
+  text-decoration: none;
+  border-bottom: 1px solid #222;
+}
+
+.read-more:hover {
+  color: #555;
+  border-color: #555;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background-color: #222;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.btn:hover {
+  background-color: #444;
+}
+
+/* ---- Flash messages ---- */
+.notice {
+  background-color: #f0fdf4;
+  color: #166534;
+  padding: 0.75rem 2rem; 
+  margin-bottom: 0;
+  width: 100%;  
+  text-align: center; 
+}
+
+.alert {
+  background-color: #fef2f2;
+  color: #991b1b;
+  padding: 0.75rem 2rem; 
+  margin-bottom: 0;
+  width: 100%;  
+  text-align: center;
+}
+
+/* ---- Footer ---- */
+footer {
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: #888;
+  width: 100%;
+}
+
+/* ---- Forms ---- */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form div {
+  margin-bottom: 1.2rem;
+}
+
+form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #222;
+}
+
+form input[type="submit"] {
+  width: auto;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+form input[type="submit"]:hover {
+  background-color: #444;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  nav span {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.nav-spacer {
+  flex: 1;
+}
+
+/* ---- Post Actions ---- */
+.post-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.post-actions-right {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #222;
+  font-size: 0.9rem;
+  background: white;
+}
+
+.btn-secondary:hover {
+  background-color: #f5f5f5;
+}
+
+.btn-danger {
+  padding: 0.5rem 1rem;
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+}
+
+.btn-publish {
+  padding: 0.5rem 1rem;
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-publish:hover {
+  background-color: #15803d;
+}
+
+/* ---- Likes Section ---- */
+.likes-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.likes-section p {
+  margin: 0;
+}
+
+/* ---- Post Content ---- */
+#post-content p, .post-body {
+  text-align: justify;
+}

@@ -1,18 +1,16 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @post %>
 
 <% if @post.images.attached? %>
-  <div>
+  <div class="post-images">
     <% @post.images.each do |image| %>
       <%= image_tag image, style: "width: 300px; margin: 5px;" %>
     <% end %>
   </div>
 <% end %>
 
-<div>
+<%# Likes %>
+<div class="likes-section">
   <p>❤️ <%= @post.likes.count %> likes</p>
-
   <% if @post.likes.exists?(ip_address: request.remote_ip) %>
     <%= button_to "Unlike", post_like_path(@post, @post.likes.find_by(ip_address: request.remote_ip)), method: :delete %>
   <% else %>
@@ -20,11 +18,12 @@
   <% end %>
 </div>
 
-<div>
+<%# Comments %>
+<div class="comments-section">
   <h3>Comments (<%= @post.comments.count %>)</h3>
 
   <% @post.comments.each do |comment| %>
-    <div>
+    <div class="comment">
       <strong><%= comment.name %></strong>
       <p><%= comment.body %></p>
       <small>Posted on <%= comment.created_at.strftime("%B %d, %Y") %></small>
@@ -38,7 +37,6 @@
 
   <h4>Leave a comment</h4>
   <%= form_with model: [@post, Comment.new] do |form| %>
-    
     <div>
       <%= form.label :name, "Your name" %>
       <%= form.text_field :name %>
@@ -57,20 +55,21 @@
   <% end %>
 </div>
 
-<div>
-  <%= link_to "Back to posts", posts_path %>
+<%# Post Actions %>
+<div class="post-actions">
+  <%= link_to "← Back to posts", posts_path, class: "btn-secondary" %>
 
-  <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>
-    <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <% end %>
-  
-  <% if user_signed_in? && current_user.admin? %>
-    <%= button_to "Destroy this post", @post, method: :delete %>
-  <% end %>
+  <div class="post-actions-right">
+    <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>
+      <%= link_to "Edit", edit_post_path(@post), class: "btn-secondary" %>
+    <% end %>
 
+    <% if user_signed_in? && current_user.admin? %>
+      <%= button_to "Delete", @post, method: :delete, class: "btn-danger" %>
+    <% end %>
 
-
-  <% if user_signed_in? && current_user.admin? && !@post.published? %>
-  <%= button_to "Publish", publish_post_path(@post), method: :patch %>
-  <% end %>
+    <% if user_signed_in? && current_user.admin? && !@post.published? %>
+      <%= button_to "Publish", publish_post_path(@post), method: :patch, class: "btn-publish" %>
+    <% end %>
+  </div>
 </div>

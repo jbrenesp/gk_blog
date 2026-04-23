@@ -1,15 +1,17 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Home" %>
 
-<h1>GLASS BLOG</h1>
+<div class="hero">
+  <h1>GLASS BLOG</h1>
+</div>
 
 <div id="posts">
   <% if @posts.any? %>
     <% @posts.each do |post| %>
-      <div>
+      <div class="post-card">
         <h2><%= link_to post.title, post %></h2>
-        <p>By <%= post.user.email %></p>
+        <p class="post-meta">By <%= post.user.email %> · <%= post.created_at.strftime("%B %d, %Y") %></p>
+        <p class="post-snippet"><%= truncate(post.body, length: 250) %></p>
+        <%= link_to "Read more →", post, class: "read-more" %>
       </div>
     <% end %>
   <% else %>
@@ -18,5 +20,5 @@
 </div>
 
 <% if user_signed_in? %>
-  <%= link_to "New Post", new_post_path %>
+  <%= link_to "New Post", new_post_path, class: "btn" %>
 <% end %>

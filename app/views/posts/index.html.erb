@@ -10,7 +10,7 @@
       <div class="post-card">
         <h2><%= link_to post.title, post %></h2>
         <p class="post-meta">By <%= post.user.email %> · <%= post.created_at.strftime("%B %d, %Y") %></p>
-        <p class="post-snippet"><%= truncate(post.body, length: 250) %></p>
+        <p class="post-snippet"><%= truncate(post.body.to_plain_text, length: 250) %></p>
         <%= link_to "Read more →", post, class: "read-more" %>
       </div>
     <% end %>

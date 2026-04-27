@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   devise_for :users, path: "auth", path_names: { sign_in: "login" },
   skip: [ :registrations ]
   root "posts#index"
+
+  resources :users, only: [ :new, :create ]
+
+
   resources :posts do
     member do
       patch :publish

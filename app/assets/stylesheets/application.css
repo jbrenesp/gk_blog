@@ -335,3 +335,19 @@ form input[type="submit"]:hover {
   border-radius: 4px;
   margin: 1rem 0;
 }
+
+.field p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.field p label {
+  display: inline;
+  margin: 0;
+}
+
+.field input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}

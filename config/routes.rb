@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, path: "auth", path_names: { sign_in: "login", sign_up: "register" }
+  devise_for :users, path: "auth", path_names: { sign_in: "login" },
+  skip: [ :registrations ]
   root "posts#index"
   resources :posts do
     member do

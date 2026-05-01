@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :authorize_user!, only: %i[edit update destroy]
+  before_action :require_admin, only: [ :new, :create, :edit, :update, :destroy, :publish ]
+
 
   # GET /posts or /posts.json
   def index
@@ -56,14 +57,8 @@ class PostsController < ApplicationController
   end
 
   def publish
-    @post = Post.find(params[:id])
-
-    if current_user.admin?
-      @post.update(status: :published)
-      redirect_to @post, notice: "Post published!"
-    else
-      redirect_to @post, alert: "Not authorized"
-    end
+    @post.update(status: :published)
+    redirect_to @post, notice: "Post published!"
   end
 
 
@@ -73,7 +68,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params.expect(:id))
+      @post = Post.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -81,9 +76,7 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :body, images: [])
     end
 
-    def authorize_user!
-      unless current_user.admin? || @post.user == current_user
-        redirect_to posts_path, alert: "Not authorized."
-      end
+    def require_admin
+      redirect_to root_path, alert: "Not authorized" unless current_user.admin?
     end
 end

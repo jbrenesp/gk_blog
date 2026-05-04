@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   skip: [ :registrations ]
   root "posts#index"
 
-  resources :users, only: [ :new, :create ]
+  resources :users, only: [ :index, :new, :create, :update ]
 
 
   resources :posts do

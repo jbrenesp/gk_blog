@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin
+
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -16,6 +21,8 @@ class UsersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+
 
   private
 

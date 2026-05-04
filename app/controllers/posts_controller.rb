@@ -1,12 +1,18 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :require_admin, only: [ :new, :create, :edit, :update, :destroy, :publish ]
+  before_action :set_post, only: %i[ show edit update destroy publish ]
+
+  before_action :require_admin, only: %i[ destroy publish ]
+  before_action :authorize_owner_or_admin, only: %i[edit update]
 
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.where(status: :published).order(created_at: :desc)
+    if current_user&.admin?
+      @posts = Post.all.order(created_at: :desc)
+    else
+      @posts = Post.where(status: :published).order(created_at: :desc)
+    end
   end
 
   # GET /posts/1 or /posts/1.json
@@ -25,9 +31,10 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = current_user.posts.build(post_params)
+    @post.status = :draft
 
     if @post.save
-    redirect_to @post, notice: "Post was successfully created."
+      redirect_to @post, notice: "Post was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -62,9 +69,6 @@ class PostsController < ApplicationController
   end
 
 
-
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -78,5 +82,11 @@ class PostsController < ApplicationController
 
     def require_admin
       redirect_to root_path, alert: "Not authorized" unless current_user.admin?
+    end
+
+    def authorize_owner_or_admin
+      unless current_user.admin? || @post.user == current_user
+        redirect_to posts_path, alert: "Not authorized"
+      end
     end
 end

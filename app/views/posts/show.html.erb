@@ -67,9 +67,9 @@
     <% if user_signed_in? && current_user.admin? %>
       <%= button_to "Delete", @post, method: :delete, class: "btn-danger" %>
     <% end %>
-
-    <% if user_signed_in? && current_user.admin? && !@post.published? %>
-      <%= button_to "Publish", publish_post_path(@post), method: :patch, class: "btn-publish" %>
+    
+    <% if user_signed_in? && current_user.admin? && @post.status != "published" %>
+      <%= button_to "Publish",publish_post_path(@post),method: :patch,class: "btn-publish" %>
     <% end %>
   </div>
 </div>

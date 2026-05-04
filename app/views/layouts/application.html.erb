@@ -38,11 +38,11 @@
         <% if user_signed_in? %>
           <%= link_to "New Post", new_post_path %>
           <span class="nav-user">
-          <%= current_user.email.split("@").first %>
+            <%= current_user.email.split("@").first %>
           </span>
 
           <% if current_user.admin? %>
-          <%= link_to "Create User", new_user_path %>
+            <%= link_to "Create User", new_user_path %>
           <% end %>
           
           <%= link_to "Logout",

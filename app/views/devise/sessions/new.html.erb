@@ -8,7 +8,14 @@
 
   <div class="field">
     <p><%= f.label :password %></p>
-    <p><%= f.password_field :password, autocomplete: "current-password" %></p>
+    <%= f.password_field :password, id: "password-field", autocomplete: "current-password" %>
+  </div>
+  
+  <div class="field">
+    <label class="checkbox-label">
+      <input type="checkbox" id="toggle-password">
+        Show password
+    </label>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -27,3 +34,16 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<script>
+  document.addEventListener("turbo:load", function() {
+    const passwordField = document.getElementById("password-field");
+    const toggle = document.getElementById("toggle-password");
+
+    if (toggle && passwordField) {
+      toggle.addEventListener("change", function() {
+        passwordField.type = this.checked ? "text" : "password";
+      });
+    }
+  });
+</script>

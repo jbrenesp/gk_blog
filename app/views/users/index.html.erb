@@ -1,17 +1,47 @@
 <h1>Users</h1>
 
-<table>
-  <tr>
-    <th>Email</th>
-    <th>Role</th>
-  </tr>
-
-  <% @users.each do |user| %>
+<table class="users-table">
+  <thead>
     <tr>
-      <td><%= user.email %></td>
-      <td><%= user.role %></td>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Actions</th>
     </tr>
-  <% end %>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+
+        <td>
+          <span class="role-badge <%= user.role %>">
+            <%= user.role %>
+          </span>
+        </td>
+
+        <td>
+          <% if user == current_user %>
+            <em>You</em>
+          <% else %>
+
+            <%= form_with model: user, method: :patch, local: true do |f| %>
+
+              <%= f.select :role,
+                  User.roles.keys.map { |r| [r.titleize, r] },
+                  selected: user.role %>
+
+              <%= f.submit "Update", class: "btn-small" %>
+
+            <% end %>
+
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<%= link_to "Create User", new_user_path, class: "btn" %>
+<div style="margin-top: 20px;">
+  <%= link_to "Create User", new_user_path, class: "btn" %>
+</div>

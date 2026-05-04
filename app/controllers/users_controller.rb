@@ -22,6 +22,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      redirect_to users_path, notice: "User updated successfully"
+    else
+      redirect_to users_path, alert: "Could not update user"
+    end
+  end
+
+
+
 
 
   private

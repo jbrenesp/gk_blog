@@ -519,3 +519,39 @@ h1 {
   border-radius: var(--radius-sm);
   margin: 1rem 0;
 }
+
+/* BLOG GRID */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* BLOG CARDS */
+.blog-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1.2rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+.blog-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.blog-card h3 a {
+  text-decoration: none;
+  color: #222;
+}
+
+.blog-card h3 a:hover {
+  color: #f97316;
+}

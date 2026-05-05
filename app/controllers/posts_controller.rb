@@ -1,22 +1,27 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
-  before_action :set_post, only: %i[ show edit update destroy publish ]
+  before_action :authenticate_user!, except: %i[index show blog]
+  before_action :set_post, only: %i[show edit update destroy publish]
 
-  before_action :require_admin, only: %i[ destroy publish ]
+  before_action :require_admin, only: %i[destroy publish]
   before_action :authorize_owner_or_admin, only: %i[edit update]
 
-
-  # GET /posts or /posts.json
+  # GET /posts (HOME PAGE)
   def index
-    if current_user&.admin?
-      @posts = Post.all.order(created_at: :desc)
-    else
-      @posts = Post.where(status: :published).order(created_at: :desc)
-    end
+    scope = current_user&.admin? ? Post.all : Post.where(status: :published)
+
+    @latest_post = scope.order(created_at: :desc).first
   end
 
-  # GET /posts/1 or /posts/1.json
+  # GET /blog (ALL PUBLISHED POSTS)
+  def blog
+    @posts = Post.where(status: :published).order(created_at: :desc)
+  end
+
+  # GET /posts/:id
   def show
+    if !current_user&.admin? && @post.status != "published"
+      redirect_to root_path, alert: "Not authorized"
+    end
   end
 
   # GET /posts/new
@@ -24,11 +29,11 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  # GET /posts/1/edit
+  # GET /posts/:id/edit
   def edit
   end
 
-  # POST /posts or /posts.json
+  # POST /posts
   def create
     @post = current_user.posts.build(post_params)
     @post.status = :draft
@@ -40,7 +45,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
+  # PATCH/PUT /posts/:id
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -53,7 +58,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1 or /posts/1.json
+  # DELETE /posts/:id
   def destroy
     @post.destroy!
 
@@ -63,30 +68,33 @@ class PostsController < ApplicationController
     end
   end
 
+  # PATCH /posts/:id/publish
   def publish
     @post.update(status: :published)
     redirect_to @post, notice: "Post published!"
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :body, images: [])
-    end
+  # Find post
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    def require_admin
-      redirect_to root_path, alert: "Not authorized" unless current_user.admin?
-    end
+  # Strong params
+  def post_params
+    params.require(:post).permit(:title, :body, images: [])
+  end
 
-    def authorize_owner_or_admin
-      unless current_user.admin? || @post.user == current_user
-        redirect_to posts_path, alert: "Not authorized"
-      end
+  # Only admins allowed
+  def require_admin
+    redirect_to root_path, alert: "Not authorized" unless current_user.admin?
+  end
+
+  # Only owner or admin can edit/update
+  def authorize_owner_or_admin
+    unless current_user.admin? || @post.user == current_user
+      redirect_to posts_path, alert: "Not authorized"
     end
+  end
 end

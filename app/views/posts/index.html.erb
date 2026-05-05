@@ -2,23 +2,38 @@
 
 <div class="hero">
   <h1>GLASS BLOG</h1>
+  <p>Thoughts, ideas, and stories</p>
 </div>
 
+<h2 style="margin-top: 2rem;">Latest Post</h2>
+
 <div id="posts">
-  <% if @posts.any? %>
-    <% @posts.each do |post| %>
-      <div class="post-card">
-        <h2><%= link_to post.title, post %></h2>
-        <p class="post-meta">By <%= post.user.email %> · <%= post.created_at.strftime("%B %d, %Y") %></p>
-        <p class="post-snippet"><%= truncate(post.body.to_plain_text, length: 250) %></p>
-        <%= link_to "Read more →", post, class: "read-more" %>
-      </div>
-    <% end %>
-  <% else %>
-    <p>No published posts yet.</p>
-  <% end %>
+  <% if @latest_post %>
+  <div class="post-card">
+    <h2><%= link_to @latest_post.title, @latest_post %></h2>
+
+    <p class="post-meta">
+      By <%= @latest_post.user.email %> ·
+      <%= @latest_post.created_at.strftime("%B %d, %Y") %>
+    </p>
+
+    <p class="post-snippet">
+      <%= truncate(@latest_post.body.to_plain_text, length: 250) %>
+    </p>
+
+    <%= link_to "Read more →", @latest_post, class: "read-more" %>
+  </div>
+<% else %>
+  <p>No published posts yet.</p>
+<% end %>
+</div>
+
+<div style="margin-top: 2rem;">
+  <%= link_to "View all posts →", blog_path, class: "btn" %>
 </div>
 
 <% if user_signed_in? %>
-  <%= link_to "New Post", new_post_path, class: "btn" %>
+  <div style="margin-top: 1rem;">
+    <%= link_to "New Post", new_post_path, class: "btn" %>
+  </div>
 <% end %>

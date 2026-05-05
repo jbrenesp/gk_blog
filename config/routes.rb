@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   skip: [ :registrations ]
   root "posts#index"
 
+  namespace :admin do
+    get "dashboard", to: "dashboard#index"
+  end
+
   get "blog", to: "posts#blog", as: :blog
 
   resources :users, only: [ :index, :new, :create, :update ]

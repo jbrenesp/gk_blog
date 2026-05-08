@@ -9,23 +9,31 @@
 
 <div id="posts">
   <% if @latest_post %>
-  <div class="post-card">
-    <h2><%= link_to @latest_post.title, @latest_post %></h2>
+    <div class="post-card">
 
-    <p class="post-meta">
-      By <%= @latest_post.user.email %> ·
-      <%= @latest_post.created_at.strftime("%B %d, %Y") %>
-    </p>
+      <% if @latest_post.images.attached? %>
+        <div class="post-thumbnail">
+          <%= image_tag @latest_post.images.first, class: "post-thumbnail-img" %>
+        </div>
+      <% end %>
 
-    <p class="post-snippet">
-      <%= truncate(@latest_post.body.to_plain_text, length: 250) %>
-    </p>
+      <h2><%= link_to @latest_post.title, @latest_post %></h2>
 
-    <%= link_to "Read more →", @latest_post, class: "read-more" %>
-  </div>
-<% else %>
-  <p>No published posts yet.</p>
-<% end %>
+      <p class="post-meta">
+        By <%= @latest_post.user.email %> ·
+        <%= @latest_post.created_at.strftime("%B %d, %Y") %>
+      </p>
+
+      <p class="post-snippet">
+        <%= truncate(@latest_post.body.to_plain_text, length: 250) %>
+      </p>
+
+      <%= link_to "Read more →", @latest_post, class: "read-more" %>
+
+    </div>
+  <% else %>
+    <p>No published posts yet.</p>
+  <% end %>
 </div>
 
 <div style="margin-top: 2rem;">

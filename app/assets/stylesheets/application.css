@@ -555,3 +555,17 @@ h1 {
 .blog-card h3 a:hover {
   color: #f97316;
 }
+
+.post-thumbnail {
+  float: right;
+  margin-left: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.post-thumbnail-img {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+

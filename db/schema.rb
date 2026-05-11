@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_11_105902) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_11_135016) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -80,6 +80,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_11_105902) do
     t.bigint "user_id", null: false
     t.integer "views_count", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "site_visits", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "visits_count"
   end
 
   create_table "users", force: :cascade do |t|

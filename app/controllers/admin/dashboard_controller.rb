@@ -10,6 +10,7 @@ class Admin::DashboardController < ApplicationController
     @admin_count = User.where(role: :admin).count
 
     @total_views = Post.sum(:views_count).to_i
+    @site_visits = SiteVisit.first_or_create(visits_count: 0).visits_count
   end
 
   private

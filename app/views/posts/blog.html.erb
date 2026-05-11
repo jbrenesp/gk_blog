@@ -5,7 +5,7 @@
         <h3><%= link_to post.title, post %></h3>
 
         <p class="post-meta">
-          By <%= post.user.email %> · <%= post.created_at.strftime("%b %d, %Y") %>
+          <%= post.created_at.strftime("%b %d, %Y") %>
         </p>
 
         <p class="post-snippet">

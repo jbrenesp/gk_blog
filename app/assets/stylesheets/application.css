@@ -19,9 +19,9 @@
   /* Colors */
   --color-bg: #fafafa;
   --color-surface: #ffffff;
-  --color-text: #7b3c14;;
   --color-muted: #888;
   --color-border: #eee;
+  --color-text: #111111;
 
   --color-primary: #f97316;
   --color-primary-dark: #ea580c;
@@ -49,6 +49,8 @@
 }
 
 
+
+
 /* =========================
    3. RESET & BASE
 ========================= */
@@ -63,7 +65,6 @@ body {
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.7;
-  color: #7b3c14;
   background-color: var(--color-bg);
   display: flex;
   flex-direction: column;
@@ -113,7 +114,6 @@ nav {
 }
 
 nav a,
-.btn,
 .about {
   font-family: 'Caramel', cursive;
   font-size: 2rem;
@@ -416,6 +416,20 @@ form input[type="submit"]:hover {
   margin: 0;
 }
 
+.comment-form {
+  display: none;
+  margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.2s ease;
+}
+
+.comment-form.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /* =========================
    14. TABLES (USERS ADMIN)
@@ -621,10 +635,6 @@ h1 {
   margin: 0 auto 1rem;
 }
 
-h1, h2, h3 {
-  color: #7b3c14;
-}
-
 .post-card h2 a {
   color: #7b3c14;
   text-decoration: none;
@@ -669,4 +679,14 @@ h1, h2, h3 {
 
 .filters a.active {
   border-bottom: 2px solid #7b3c14;
+}
+
+.post-card h2 a {
+  color: #111;
+}
+
+.post-snippet,
+.post-meta,
+.post-body {
+  color: #111;
 }

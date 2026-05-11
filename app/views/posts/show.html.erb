@@ -11,8 +11,11 @@
 <%# Likes %>
 <div class="likes-section">
   <p>❤️ <%= @post.likes.count %> likes</p>
+
   <% if @post.likes.exists?(ip_address: request.remote_ip) %>
-    <%= button_to "Unlike", post_like_path(@post, @post.likes.find_by(ip_address: request.remote_ip)), method: :delete %>
+    <%= button_to "Unlike",
+      post_like_path(@post, @post.likes.find_by(ip_address: request.remote_ip)),
+      method: :delete %>
   <% else %>
     <%= button_to "Like ❤️", post_likes_path(@post), method: :post %>
   <% end %>
@@ -27,7 +30,9 @@
       <strong><%= comment.name %></strong>
       <p><%= comment.body %></p>
       <small>Posted on <%= comment.created_at.strftime("%B %d, %Y") %></small>
+
       <% if user_signed_in? && current_user.admin? %>
+        <br>
         <small>📧 <%= comment.email %></small>
         <%= button_to "Delete", post_comment_path(@post, comment), method: :delete %>
       <% end %>
@@ -35,24 +40,41 @@
     <hr>
   <% end %>
 
-  <h4>Leave a comment</h4>
-  <%= form_with model: [@post, Comment.new] do |form| %>
-    <div>
-      <%= form.label :name, "Your name" %>
-      <%= form.text_field :name %>
+  <!-- Stimulus Comment Toggle -->
+  <div data-controller="comment-toggle" class="comment-form-toggle">
+
+    <button
+      type="button"
+      data-action="click->comment-toggle#toggle"
+      class="btn btn--secondary">
+      💬 Leave a comment
+    </button>
+
+    <div data-comment-toggle-target="form" class="comment-form">
+      <h4>Leave a comment</h4>
+
+      <%= form_with model: [@post, Comment.new] do |form| %>
+        <div>
+          <%= form.label :name, "Your name" %>
+          <%= form.text_field :name %>
+        </div>
+
+        <div>
+          <%= form.label :email, "Your email (won't be displayed)" %>
+          <%= form.email_field :email %>
+        </div>
+
+        <div>
+          <%= form.label :body, "Your comment" %>
+          <%= form.text_area :body, rows: 4 %>
+        </div>
+
+        <div>
+          <%= form.submit "Post Comment", class: "btn btn--primary" %>
+        </div>
+      <% end %>
     </div>
-    <div>
-      <%= form.label :email, "Your email (won't be displayed)" %>
-      <%= form.email_field :email %>
-    </div>
-    <div>
-      <%= form.label :body, "Your comment" %>
-      <%= form.text_area :body, rows: 4 %>
-    </div>
-    <div>
-      <%= form.submit "Post Comment" %>
-    </div>
-  <% end %>
+  </div>
 </div>
 
 <%# Post Actions %>
@@ -67,9 +89,9 @@
     <% if user_signed_in? && current_user.admin? %>
       <%= button_to "Delete", @post, method: :delete, class: "btn-danger" %>
     <% end %>
-    
+
     <% if user_signed_in? && current_user.admin? && @post.status != "published" %>
-      <%= button_to "Publish",publish_post_path(@post),method: :patch,class: "btn-publish" %>
+      <%= button_to "Publish", publish_post_path(@post), method: :patch, class: "btn-publish" %>
     <% end %>
   </div>
 </div>

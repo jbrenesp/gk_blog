@@ -654,3 +654,19 @@ h1, h2, h3 {
   box-shadow: 0 8px 20px rgba(0,0,0,0.06);
   cursor: pointer;
 }
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filters a {
+  text-decoration: none;
+  color: #7b3c14;
+  font-weight: 500;
+}
+
+.filters a.active {
+  border-bottom: 2px solid #7b3c14;
+}

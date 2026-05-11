@@ -19,8 +19,18 @@ class PostsController < ApplicationController
 
   # GET /posts/:id
   def show
+    @post = Post.find(params[:id])
+
     if !current_user&.admin? && @post.status != "published"
       redirect_to root_path, alert: "Not authorized"
+      return
+    end
+
+    session_key = "viewed_post_#{@post.id}"
+
+    unless session[session_key]
+      @post.increment!(:views_count)
+      session[session_key] = true
     end
   end
 

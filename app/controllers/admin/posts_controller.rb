@@ -4,10 +4,15 @@ module Admin
     before_action :require_admin
 
     def index
-      @posts = Post.all.order(created_at: :desc)
+      @status = params[:status]
 
-      if params[:status].present?
-        @posts = @posts.where(status: params[:status])
+      @posts = Post.all
+
+      case @status
+      when "published"
+        @posts = @posts.where(status: :published)
+      when "draft"
+        @posts = @posts.where(status: :draft)
       end
     end
   end

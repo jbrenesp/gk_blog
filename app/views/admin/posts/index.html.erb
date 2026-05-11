@@ -1,4 +1,12 @@
+
+
 <h1>Posts</h1>
+
+<div class="filters">
+  <%= link_to "All", admin_posts_path, class: ("active" unless params[:status]) %>
+  <%= link_to "Published", admin_posts_path(status: :published), class: ("active" if params[:status] == "published") %>
+  <%= link_to "Drafts", admin_posts_path(status: :draft), class: ("active" if params[:status] == "draft") %>
+</div>
 
 <table class="users-table">
   <thead>
@@ -15,7 +23,7 @@
       <tr>
         <td><%= link_to post.title, post %></td>
         <td><%= post.status %></td>
-        <td><%= post.views_count %></td>
+        <td><%= post.views_count.to_i %></td>
         <td><%= post.created_at.strftime("%b %d, %Y") %></td>
       </tr>
     <% end %>

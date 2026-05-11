@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "dashboard", to: "dashboard#index"
+
+    resources :posts, only: [ :index ]
   end
 
   get "blog", to: "posts#blog", as: :blog

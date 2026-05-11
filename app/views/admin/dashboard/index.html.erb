@@ -1,9 +1,30 @@
 <h1>Admin Dashboard</h1>
 
-<div style="margin-top: 2rem;">
-  <p><strong>Total Posts:</strong> <%= @posts_count %></p>
-  <p><strong>Published Posts:</strong> <%= @published_posts %></p>
-  <p><strong>Draft Posts:</strong> <%= @draft_posts %></p>
-  <p><strong>Total Users:</strong> <%= @users_count %></p>
-  <p><strong>Total Views:</strong> <%= @views_count %></p>
+<div class="dashboard-grid">
+
+  <%= link_to admin_posts_path, class: "dashboard-card dashboard-card--clickable" do %>
+    <h3>Total Posts</h3>
+    <p><%= @posts_count %></p>
+  <% end %>
+
+  <div class="dashboard-card">
+    <h3>Published</h3>
+    <p><%= @published_posts %></p>
+  </div>
+
+  <div class="dashboard-card">
+    <h3>Drafts</h3>
+    <p><%= @draft_posts %></p>
+  </div>
+
+  <div class="dashboard-card">
+    <h3>Users</h3>
+    <p><%= @users_count %></p>
+  </div>
+
+  <div class="dashboard-card">
+    <h3>Total Views</h3>
+    <p><%= @views_count %></p>
+  </div>
+
 </div>

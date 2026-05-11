@@ -8,6 +8,7 @@
 
 @import "actiontext";
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caramel&display=swap');
 
 
 /* =========================
@@ -18,7 +19,7 @@
   /* Colors */
   --color-bg: #fafafa;
   --color-surface: #ffffff;
-  --color-text: #222;
+  --color-text: #7b3c14;;
   --color-muted: #888;
   --color-border: #eee;
 
@@ -62,7 +63,7 @@ body {
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.7;
-  color: var(--color-text);
+  color: #7b3c14;
   background-color: var(--color-bg);
   display: flex;
   flex-direction: column;
@@ -111,11 +112,13 @@ nav {
   flex-wrap: nowrap;
 }
 
-nav a {
+nav a,
+.btn,
+.about {
+  font-family: 'Caramel', cursive;
+  font-size: 2rem;
   text-decoration: none;
-  color: var(--color-text);
-  font-size: 0.95rem;
-  font-weight: 500;
+  color:#7b3c14
 }
 
 nav a:hover {
@@ -569,3 +572,85 @@ h1 {
   border-radius: 8px;
 }
 
+/* =========================
+   18. ADMIN DASHBOARD
+========================= */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.dashboard-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dashboard-card:hover {
+  transition: none;
+  
+}
+
+.dashboard-card h3 {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dashboard-card p {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+
+
+.hero-logo {
+  max-width: 400px; /* smaller than before */
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+h1, h2, h3 {
+  color: #7b3c14;
+}
+
+.post-card h2 a {
+  color: #7b3c14;
+  text-decoration: none;
+}
+
+.post-card h2 a:hover {
+  color: #5a2b0f;
+}
+
+.post-meta,
+.post-snippet {
+  color: #7b3c14;
+}
+
+.dashboard-card--clickable {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.dashboard-card--clickable {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dashboard-card--clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  cursor: pointer;
+}

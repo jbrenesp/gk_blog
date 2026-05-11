@@ -118,7 +118,7 @@ nav a,
   font-family: 'Caramel', cursive;
   font-size: 2rem;
   text-decoration: none;
-  color:#7b3c14
+  color: var(--color-text)
 }
 
 nav a:hover {

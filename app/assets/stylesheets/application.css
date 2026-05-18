@@ -91,7 +91,7 @@ main,
 
 
 /* =========================
-   5. NAVBAR
+   NAVBAR
 ========================= */
 
 header {
@@ -113,35 +113,107 @@ nav {
   flex-wrap: nowrap;
 }
 
-nav a,
-.about {
-  font-family: 'Caramel', cursive;
-  font-size: 2rem;
-  text-decoration: none;
-  color: var(--color-text)
-}
-
-nav a:hover {
-  color: var(--color-primary);
-}
-
+/* pushes menu to the right */
 .nav-spacer {
   flex: 1;
 }
+
+/* =========================
+   BRAND (GLASS BLOG)
+========================= */
+
+nav > a:first-child {
+  font-family: 'Caramel', cursive;
+  font-size: 2rem;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+/* =========================
+   DROPDOWN WRAPPER
+========================= */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* menu button (☰) */
+.dropdown-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Caramel', cursive;
+  font-size: 2rem;
+  color: var(--color-text);
+}
+
+/* =========================
+   DROPDOWN MENU
+========================= */
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  min-width: 160px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 0.4rem 0;
+  z-index: 1000;
+
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* open via JS */
+.dropdown.open .dropdown-content {
+  display: block;
+}
+
+/* hover for desktop */
+@media (min-width: 769px) {
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+}
+
+/* mobile positioning */
+@media (max-width: 768px) {
+  .dropdown-content {
+    right: 0;
+    left: auto;
+  }
+}
+
+/* =========================
+   DROPDOWN LINKS
+========================= */
+
+.dropdown-content a {
+  display: block;
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}
+
+.dropdown-content a:hover {
+  background-color: #f9f9f9;
+}
+
+/* =========================
+   USER LABEL
+========================= */
 
 .nav-user {
   font-size: 0.85rem;
   color: var(--color-muted);
   white-space: nowrap;
-  padding: 0 0.4rem;
-  border-radius: var(--radius-sm);
 }
-
-.nav-user:hover {
-  background-color: #f5f5f5;
-}
-
-
 /* =========================
    6. HERO
 ========================= */

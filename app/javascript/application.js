@@ -5,4 +5,21 @@ import "controllers"
 import "trix"
 import "@rails/actiontext"
 
+function setupDropdown() {
+  const dropdown = document.querySelector(".dropdown");
+  const button = document.querySelector(".dropdown-btn");
 
+  if (!dropdown || !button) return;
+
+  button.addEventListener("click", () => {
+    dropdown.classList.toggle("open");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove("open");
+    }
+  });
+}
+
+document.addEventListener("turbo:load", setupDropdown);

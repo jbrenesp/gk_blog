@@ -290,6 +290,31 @@ footer {
   color: var(--color-muted);
 }
 
+.trix-content img {
+  height: auto;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+/* Small image */
+.trix-content img.img-small {
+  width: 250px;
+}
+
+/* Medium image */
+.trix-content img.img-medium {
+  width: 500px;
+}
+
+/* Large / full width image */
+.trix-content img.img-large {
+  width: 100%;
+}
+
+.trix-content img {
+  cursor: pointer;
+}
+
 
 /* =========================
    9. BUTTONS
@@ -658,6 +683,9 @@ h1 {
   border-radius: 8px;
 }
 
+p {
+  text-align: justify;
+}
 /* =========================
    18. ADMIN DASHBOARD
 ========================= */

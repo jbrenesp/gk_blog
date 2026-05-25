@@ -623,7 +623,7 @@ h1 {
 }
 
 #post-content p,
-.post-body {
+.post-body p {
   text-align: justify;
 }
 
@@ -683,9 +683,11 @@ h1 {
   border-radius: 8px;
 }
 
-p {
-  text-align: justify;
-}
+
+
+
+
+
 /* =========================
    18. ADMIN DASHBOARD
 ========================= */
@@ -789,4 +791,8 @@ p {
 .post-meta,
 .post-body {
   color: #111;
+}
+
+footer p {
+  text-align: center !important;
 }

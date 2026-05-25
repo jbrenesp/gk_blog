@@ -1,4 +1,5 @@
 Glass Blog 
+
 A full-stack blog platform built with Ruby on Rails. 
 
 This was a personal portfolio project where I built everything from scratch — authentication, user roles, content management, and deployment.
@@ -8,14 +9,24 @@ Deployed on Render:  https://glass-blog.onrender.com/
 Features
 
 User Authentication — Sign up, log in, and log out by the Devise gem
+
 Role-Based Permissions — Admin and Author roles with different levels of access
+
 Full CRUD — Create, read, update, and delete blog posts
+
 Comments — Anyone can leave comments on posts
+
 Likes — Anyone can like posts
+
 Rich Text Editor — Posts support rich text content via Action Text (Trix)
+
 Admin Dashboard — Admins can manage users and content
+
 Contact Page — Visitors can reach out via a contact form
+
 About Page — Static page describing the blog
+
+
 
 Tech Stack
 
@@ -28,16 +39,24 @@ File Storage	  Active Storage
 Database	      PostgreSQL
 Deployment	    Render
 
-What I Learned
+
 I learn a lot in this project:
 Setting up Devise for authentication and customising its views and flow
+
 Implementing role-based authorisation to restrict actions based on user type
+
 Using Action Text and Active Storage for rich content and file uploads
+
 Debugging — reading error logs, tracing issues in the controller/model layer, and fixing bugs before deployment
-Deployment realities — even after thorough local testing, things broke in production. Learning to diagnose and fix production-only issues was one of the biggest takeaways of this project. 
-Learning that the coding part of web development might be the “easy” part was my biggest takeaway of this project. Deploying it and debugging scything was the hard part. 
+
+Deployment realities — even after thorough local testing, things broke in production.
+
+Learning to diagnose and fix production-only issues was one of the biggest takeaways of this project. 
+
+Learning that the coding part of web development might be the “easy” part was my biggest takeaway of this project. Deploying it and debugging was the hard part. 
 
 Getting Started
+
 Prerequisites
 Ruby 3.x
 Rails 7.x

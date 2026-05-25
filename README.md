@@ -1,9 +1,12 @@
 Glass Blog 
-A full-stack blog platform built with Ruby on Rails. This was a personal portfolio project where I built everything from scratch — authentication, user roles, content management, and deployment.
+A full-stack blog platform built with Ruby on Rails. 
+
+This was a personal portfolio project where I built everything from scratch — authentication, user roles, content management, and deployment.
 
 Deployed on Render:  https://glass-blog.onrender.com/ 
 
 Features
+
 User Authentication — Sign up, log in, and log out by the Devise gem
 Role-Based Permissions — Admin and Author roles with different levels of access
 Full CRUD — Create, read, update, and delete blog posts
@@ -16,6 +19,14 @@ About Page — Static page describing the blog
 
 Tech Stack
 
+
+Framework	      Ruby on Rails
+Authentication	Devise
+Frontend	      HTML, CSS, Turbo (Hotwire)
+Rich Text	      Action Text / Trix
+File Storage	  Active Storage
+Database	      PostgreSQL
+Deployment	    Render
 
 What I Learned
 I learn a lot in this project:
@@ -70,6 +81,11 @@ db/
 └── schema.rb          # Database schema
 
 User Roles
+
+
+Visitor -->	Read posts, view about/contact pages, like and comment on posts
+Author	--> All of the above + create, edit, delete own un-published posts
+Admin	  --> Full access — manage all posts and users
 
 
 

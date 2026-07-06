@@ -10,7 +10,15 @@ class Admin::DashboardController < ApplicationController
     @admin_count = User.where(role: :admin).count
 
     @total_views = Post.sum(:views_count).to_i
-    @site_visits = SiteVisit.first_or_create(visits_count: 0).visits_count
+
+    @total_visits = Ahoy::Visit.count
+    @visits_today = Ahoy::Visit.where(started_at: Time.zone.now.beginning_of_day..).count
+    @visits_this_week = Ahoy::Visit.where(started_at: 7.days.ago..).count
+    @visits_this_month = Ahoy::Visit.where(started_at: 30.days.ago..).count
+    @visits_by_day = Ahoy::Visit.where(started_at: 30.days.ago..)
+                                 .group("DATE(started_at)")
+                                 .order("DATE(started_at)")
+                                 .count
   end
 
   private

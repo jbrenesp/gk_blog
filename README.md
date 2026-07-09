@@ -4,7 +4,7 @@ A full-stack blog platform built with Ruby on Rails.
 
 This was a personal portfolio project where I built everything from scratch — authentication, user roles, content management, and deployment.
 
-Deployed on Render:  https://glass-blog.onrender.com/ 
+Deployed on Railway:  https://www.butterandstars.com/
 
 Features
 

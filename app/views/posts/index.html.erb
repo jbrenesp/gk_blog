@@ -1,16 +1,13 @@
 <% content_for :title, "Home" %>
 
-
-
-
-
 <div id="posts">
   <% if @latest_post %>
     <div class="post-card">
 
-      <% if @latest_post.images.attached? %>
+      <% thumbnail = @latest_post.images.attached? ? @latest_post.images.first : @latest_post.preview_image %>
+      <% if thumbnail %>
         <div class="post-thumbnail">
-          <%= image_tag @latest_post.images.first, class: "post-thumbnail-img" %>
+          <%= image_tag thumbnail.representation(resize_to_limit: [600, 400]), class: "post-thumbnail-img" %>
         </div>
       <% end %>
 
@@ -21,7 +18,7 @@
       </p>
 
       <p class="post-snippet">
-        <%= truncate(@latest_post.body.to_plain_text, length: 250) %>
+        <%= truncate(@latest_post.plain_excerpt, length: 250) %>
       </p>
 
       <%= link_to "Read more →", @latest_post, class: "read-more" %>

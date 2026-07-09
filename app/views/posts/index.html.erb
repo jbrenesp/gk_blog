@@ -1,40 +1,9 @@
-<% content_for :title, "Home" %>
+<%= content_for :title, "Home" %>
 
-<div id="posts">
-  <% if @latest_post %>
-    <div class="post-card">
+<div class="home-cover-page">
+  <%= image_tag "butter-front_page.jpeg", alt: "Butter and Stars" %>
 
-      <% thumbnail = @latest_post.images.attached? ? @latest_post.images.first : @latest_post.preview_image %>
-      <% if thumbnail %>
-        <div class="post-thumbnail">
-          <%= image_tag thumbnail.representation(resize_to_limit: [600, 400]), class: "post-thumbnail-img" %>
-        </div>
-      <% end %>
-
-      <h2><%= link_to @latest_post.title, @latest_post %></h2>
-
-      <p class="post-meta">
-        <%= @latest_post.created_at.strftime("%B %d, %Y") %>
-      </p>
-
-      <p class="post-snippet">
-        <%= truncate(@latest_post.plain_excerpt, length: 250) %>
-      </p>
-
-      <%= link_to "Read more →", @latest_post, class: "read-more" %>
-
-    </div>
-  <% else %>
-    <p>No published posts yet.</p>
-  <% end %>
-</div>
-
-<div style="margin-top: 2rem;">
-  <%= link_to "View all posts →", blog_path, class: "btn" %>
-</div>
-
-<% if user_signed_in? %>
-  <div style="margin-top: 1rem;">
-    <%= link_to "New Post", new_post_path, class: "btn" %>
+  <div class="home-cover-button">
+    <%= link_to "Enter the Blog →", blog_path, class: "btn" %>
   </div>
-<% end %>
+</div>

@@ -2,6 +2,14 @@
   <% if @posts.any? %>
     <% @posts.each do |post| %>
       <div class="blog-card">
+
+        <% thumbnail = post.images.attached? ? post.images.first : post.preview_image %>
+        <% if thumbnail %>
+          <div class="post-thumbnail">
+            <%= image_tag thumbnail.representation(resize_to_limit: [400, 300]), class: "post-thumbnail-img" %>
+          </div>
+        <% end %>
+
         <h3><%= link_to post.title, post %></h3>
 
         <p class="post-meta">
@@ -9,7 +17,7 @@
         </p>
 
         <p class="post-snippet">
-          <%= truncate(post.body.to_plain_text, length: 120) %>
+          <%= truncate(post.plain_excerpt, length: 120) %>
         </p>
 
         <%= link_to "Read →", post, class: "read-more" %>

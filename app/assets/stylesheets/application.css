@@ -843,7 +843,7 @@ footer p {
 
 .home-cover-button {
   position: fixed;
-  top: 90%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;

@@ -87,18 +87,4 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: gk_blog_production
-    username: gk_blog
-    password: <%= ENV["GK_BLOG_DATABASE_PASSWORD"] %>
-  cache:
-    <<: *primary_production
-    database: gk_blog_production_cache
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: gk_blog_production_queue
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: gk_blog_production_cable
-    migrations_paths: db/cable_migrate
+    url: postgresql://postgres:EgTwatnNUKkAIevmclatcaHWZISTttDo@postgres.railway.internal:5432/railway

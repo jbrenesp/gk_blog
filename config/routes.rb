@@ -23,10 +23,10 @@ Rails.application.routes.draw do
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  get "contact", to: "contact#new", as: :contact
-  post "contact", to: "contact#create"
+  # get "contact", to: "contact#new", as: :contact
+  # post "contact", to: "contact#create"
 
-  get "about", to: "about#index", as: :about
+  # get "about", to: "about#index", as: :about
 
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -31,7 +31,7 @@
   <body>
     <header>
       <nav>
-        <%= link_to "GLASS BLOG", root_path %>
+        <%= link_to "Butter and Stars", root_path %>
         
         <span class="nav-spacer"></span>
 
@@ -41,8 +41,7 @@
           <div class="dropdown-content">
             <%= link_to "Home", root_path %>
             <%= link_to "Blog", blog_path %>
-            <%= link_to "About", about_path %>
-            <%= link_to "Contact", contact_path %>
+            
 
             <% if user_signed_in? %>
               <%= link_to "New Post", new_post_path %>

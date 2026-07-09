@@ -95,7 +95,7 @@ main,
 ========================= */
 
 header {
-  background-color: var(--color-surface);
+  background-color: black;
   border-bottom: 1px solid var(--color-border);
   padding: 1rem 2rem;
   position: sticky;
@@ -109,8 +109,8 @@ nav {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  flex-wrap: nowrap;
+  justify-content: flex-end;
+  position: relative;
 }
 
 /* pushes menu to the right */
@@ -123,10 +123,13 @@ nav {
 ========================= */
 
 nav > a:first-child {
-  font-family: 'Caramel', cursive;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
   font-size: 2rem;
   text-decoration: none;
-  color: var(--color-text);
+  color: white;
 }
 
 /* =========================
@@ -145,7 +148,7 @@ nav > a:first-child {
   cursor: pointer;
   font-family: 'Caramel', cursive;
   font-size: 2rem;
-  color: var(--color-text);
+  color: white;
 }
 
 /* =========================
@@ -644,22 +647,20 @@ h1 {
 
 /* BLOG CARDS */
 .blog-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 1.2rem;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
 
-  /* Make the card a column flex container so we can control
-     the vertical order of its children (title, meta, snippet,
-     read-more, thumbnail) without touching the HTML markup. */
-  display: flex;
-  flex-direction: column;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .blog-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
 }
 
 .blog-card h3 {

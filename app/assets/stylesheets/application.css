@@ -183,13 +183,7 @@ nav > a:first-child {
   }
 }
 
-/* mobile positioning */
-@media (max-width: 768px) {
-  .dropdown-content {
-    right: 0;
-    left: auto;
-  }
-}
+
 
 /* =========================
    DROPDOWN LINKS
@@ -847,4 +841,62 @@ footer p {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
+}
+
+
+@media (max-width: 768px) {
+  header {
+    padding: 0.75rem 1rem;
+  }
+
+  .home-cover-button {
+    top: 40%;}
+
+  nav > a:first-child {
+    font-size: 1.4rem;
+    white-space: nowrap;
+  }
+
+  .dropdown-btn {
+    font-size: 1.6rem;
+  }
+
+  .dropdown-content {
+    right: 0;
+    left: auto;
+  }
+
+  .home-cover-button .btn {
+    white-space: nowrap;   /* 👈 add this line */
+  }
+
+  .home-cover-page {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: calc(var(--space-xl) * -1);
+    margin-bottom: 0;
+
+    height: calc(100vh - 138px);
+    height: calc(100dvh - 138px);
+    overflow: hidden;
+  }
+
+  .home-cover-page img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-cover-button .btn {
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+  }
 }

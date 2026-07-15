@@ -14,5 +14,6 @@ class Post < ApplicationRecord
         fragment = Nokogiri::HTML::DocumentFragment.parse(body.to_s)
         fragment.css("action-text-attachment").remove
         ActionView::Base.full_sanitizer.sanitize(fragment.to_html).squish
+        CGI.unescapeHTML(text)
     end
 end

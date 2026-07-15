@@ -27,6 +27,27 @@
     </style>
 
   </head>
+  
+  <script>
+    function setCoverHeight() {
+      if (window.innerWidth > 768) return; // desktop untouched
+
+      const cover = document.querySelector('.home-cover-page');
+      if (!cover) return; // only runs on pages that have it (home page)
+
+      const header = document.querySelector('header');
+      const footer = document.querySelector('footer');
+      const headerHeight = header ? header.offsetHeight : 0;
+      const footerHeight = footer ? footer.offsetHeight : 0;
+
+      const availableHeight = window.innerHeight - headerHeight - footerHeight;
+      cover.style.height = availableHeight + 'px';
+    }
+    
+    window.addEventListener('load', setCoverHeight);
+    window.addEventListener('resize', setCoverHeight);
+    window.addEventListener('orientationchange', setCoverHeight);
+</script>
 
   <body>
     <header>

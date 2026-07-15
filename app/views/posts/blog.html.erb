@@ -17,7 +17,7 @@
         </p>
 
         <p class="post-snippet">
-          <%= truncate(post.plain_excerpt, length: 120) %>
+          <%= truncate(CGI.unescapeHTML(strip_tags(post.plain_excerpt.to_s)), length: 120) %>
         </p>
 
         <%= link_to "Read →", post, class: "read-more" %>

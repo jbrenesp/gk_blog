@@ -902,6 +902,8 @@ footer p {
   }
 }
 
-main:has(.home-cover-page) {
-  padding-bottom: 0;
+@media (max-width: 768px) {
+  main:has(.home-cover-page) {
+    padding-bottom: 0;
+  }
 }

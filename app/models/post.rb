@@ -10,10 +10,10 @@ class Post < ApplicationRecord
       body.embeds.first
     end
 
-    def plain_excerpt
-        fragment = Nokogiri::HTML::DocumentFragment.parse(body.to_s)
-        fragment.css("action-text-attachment").remove
-        ActionView::Base.full_sanitizer.sanitize(fragment.to_html).squish
-        CGI.unescapeHTML(text)
-    end
+   def plain_excerpt
+    html = body.to_s.gsub(%r{</(p|div|li|h[1-6])>|<br\s*/?>}i, '\0 ')
+    fragment = Nokogiri::HTML::DocumentFragment.parse(html)
+    fragment.css("action-text-attachment").remove
+    fragment.text.gsub("\u00A0", " ").squish
+   end
 end

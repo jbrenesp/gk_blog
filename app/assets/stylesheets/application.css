@@ -843,6 +843,21 @@ footer p {
   z-index: 999;
 }
 
+.home-cover-button .btn {
+  background: white;
+  border: 1.5px solid #111;
+  color: #111;
+  border-radius: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: 0.3px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.home-cover-button .btn:hover {
+  background: #111;
+  color: #fff;
+}
+
 
 @media (max-width: 768px) {
   header {
@@ -879,7 +894,7 @@ footer p {
     margin-left: -50vw;
     margin-right: -50vw;
     margin-top: calc(var(--space-xl) * -1);
-    margin-bottom: 0;
+    margin-bottom: calc(var(--space-xl) * -1);
 
     height: calc(100vh - 138px);
     height: calc(100dvh - 138px);
@@ -899,11 +914,5 @@ footer p {
   .home-cover-button .btn {
     padding: 0.45rem 1rem;
     font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 768px) {
-  main:has(.home-cover-page) {
-    padding-bottom: 0;
   }
 }

@@ -79,7 +79,7 @@
 
 <%# Post Actions %>
 <div class="post-actions">
-  <%= link_to "← Back to posts", posts_path, class: "btn-secondary" %>
+  <%= link_to "← Back to posts", blog_path, class: "btn-secondary" %>
 
   <div class="post-actions-right">
     <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>

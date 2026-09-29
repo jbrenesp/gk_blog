@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get "blog", to: "posts#blog", as: :blog
 
+  resource :cookie_consent, only: [ :create, :destroy ]
+
   resources :users, only: [ :index, :new, :create, :update ]
 
 

@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
 
+  # Must run before Ahoy's own before_action, which tracks the visit
+  prepend_before_action :set_analytics_consent
+  helper_method :cookie_consent
 
 
   # Redirect users after login
@@ -13,6 +16,15 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  # "accepted", "declined", or nil when the visitor hasn't chosen yet
+  def cookie_consent
+    cookies[:cookie_consent].presence_in(CookieConsentsController::CHOICES)
+  end
+
+  def set_analytics_consent
+    Current.analytics_cookies = cookie_consent == "accepted"
+  end
 
   # Safe replacement for custom authentication logic
   def require_login

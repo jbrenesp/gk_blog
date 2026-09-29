@@ -7,6 +7,16 @@ end
 
 Ahoy.cookies = true
 
+# Ahoy cookies are only set once the visitor accepts the cookie banner.
+# Until then (or after declining) visits are still tracked, without cookies,
+# by grouping requests with the same masked IP and user agent.
+module AnalyticsConsent
+  def cookies?
+    super && Current.analytics_cookies == true
+  end
+end
+Ahoy.singleton_class.prepend(AnalyticsConsent)
+
 # store 1.2.3.0 instead of 1.2.3.4
 Ahoy.mask_ips = true
 

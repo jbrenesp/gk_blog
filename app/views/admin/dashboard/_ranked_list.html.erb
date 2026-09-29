@@ -1,0 +1,21 @@
+<%# rows: [[label, count], ...] or [[label, count, path], ...], largest first %>
+<section class="dashboard-panel">
+  <h2><%= title %> <span class="dashboard-panel-note"><%= note %></span></h2>
+
+  <% if rows.empty? %>
+    <p class="dashboard-empty">No data yet.</p>
+  <% else %>
+    <% max = rows.map(&:second).max %>
+    <ol class="ranked-list">
+      <% rows.each do |label, count, path| %>
+        <li>
+          <div class="ranked-list-row">
+            <span class="ranked-list-label" title="<%= label %>"><%= path ? link_to(label, path) : label %></span>
+            <span class="ranked-list-count"><%= number_with_delimiter(count) %></span>
+          </div>
+          <div class="ranked-list-track"><div class="ranked-list-bar" style="width: <%= (count * 100.0 / max).round(1) %>%"></div></div>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+</section>

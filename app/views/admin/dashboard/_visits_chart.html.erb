@@ -1,0 +1,45 @@
+<% max = visits_by_day.values.max %>
+<% if max.zero? %>
+  <p class="dashboard-empty">No visits in the last 30 days.</p>
+<% else %>
+  <div class="visits-chart">
+    <div class="visits-chart-axis" aria-hidden="true">
+      <span><%= number_with_delimiter(max) %></span>
+      <span>0</span>
+    </div>
+
+    <div class="visits-chart-plot">
+      <div class="visits-chart-bars" role="img" aria-label="Visits per day for the last 30 days, up to <%= max %> a day. A table follows.">
+        <% visits_by_day.each do |day, count| %>
+          <div class="visits-chart-col" tabindex="0">
+            <% if count.positive? %>
+              <div class="visits-chart-bar" style="height: <%= (count * 100.0 / max).round(1) %>%"></div>
+            <% end %>
+            <div class="visits-chart-tooltip" role="tooltip">
+              <strong><%= number_with_delimiter(count) %></strong> <%= "visit".pluralize(count) %>
+              <span><%= l(day, format: "%a %b %-d") %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="visits-chart-dates" aria-hidden="true">
+        <span><%= l(visits_by_day.keys.first, format: "%b %-d") %></span>
+        <span><%= l(visits_by_day.keys[14], format: "%b %-d") %></span>
+        <span>Today</span>
+      </div>
+    </div>
+  </div>
+
+  <details class="visits-chart-table">
+    <summary>Show as table</summary>
+    <table>
+      <thead><tr><th>Day</th><th>Visits</th></tr></thead>
+      <tbody>
+        <% visits_by_day.reverse_each do |day, count| %>
+          <tr><td><%= l(day, format: "%a %b %-d") %></td><td><%= number_with_delimiter(count) %></td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  </details>
+<% end %>

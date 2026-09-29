@@ -982,3 +982,199 @@ footer a {
     width: 100%;
   }
 }
+
+/* =========================
+   20. DASHBOARD ANALYTICS
+========================= */
+
+.dashboard-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.2rem;
+  min-width: 0;
+}
+
+.dashboard-panel h2 {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+
+.dashboard-panel-note {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  margin-left: var(--space-md);
+}
+
+.dashboard-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0 1.2rem;
+}
+
+.dashboard-empty {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* visits per day */
+.visits-chart {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.visits-chart-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  text-align: right;
+}
+
+.visits-chart-plot {
+  flex: 1;
+  min-width: 0;
+}
+
+.visits-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 180px;
+  border-top: 1px dashed var(--color-border);
+  border-bottom: 1px solid #ddd;
+}
+
+/* the whole column is the hover target, not just the bar */
+.visits-chart-col {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  outline: none;
+}
+
+.visits-chart-bar {
+  width: 100%;
+  background-color: var(--color-primary-dark);
+  border-radius: 4px 4px 0 0;
+}
+
+.visits-chart-col:hover,
+.visits-chart-col:focus-visible {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.visits-chart-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 6px 10px;
+  background: var(--color-text);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.visits-chart-tooltip span {
+  display: block;
+  color: #ccc;
+}
+
+.visits-chart-col:hover .visits-chart-tooltip,
+.visits-chart-col:focus-visible .visits-chart-tooltip {
+  display: block;
+}
+
+/* keep the first and last tooltips inside the panel */
+.visits-chart-col:first-child .visits-chart-tooltip { left: 0; transform: none; }
+.visits-chart-col:last-child .visits-chart-tooltip { left: auto; right: 0; transform: none; }
+
+.visits-chart-dates {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.visits-chart-table {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.visits-chart-table summary {
+  cursor: pointer;
+  color: var(--color-muted);
+}
+
+.visits-chart-table table {
+  margin-top: 0.5rem;
+  border-collapse: collapse;
+}
+
+.visits-chart-table th,
+.visits-chart-table td {
+  text-align: left;
+  padding: 4px 24px 4px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ranked lists */
+.ranked-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ranked-list li + li {
+  margin-top: 0.75rem;
+}
+
+.ranked-list-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  font-size: 0.9rem;
+}
+
+.ranked-list-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranked-list-label a {
+  color: var(--color-text);
+}
+
+.ranked-list-count {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+}
+
+.ranked-list-track {
+  margin-top: 4px;
+  height: 6px;
+  background: #f3f3f3;
+  border-radius: var(--radius-pill);
+}
+
+.ranked-list-bar {
+  height: 100%;
+  background-color: var(--color-primary-dark);
+  border-radius: var(--radius-pill);
+}

@@ -49,3 +49,17 @@
 
 </div>
 
+
+<section class="dashboard-panel">
+  <h2>Visits per day <span class="dashboard-panel-note">last 30 days</span></h2>
+  <%= render "visits_chart", visits_by_day: @visits_by_day %>
+</section>
+
+<div class="dashboard-panels">
+  <%= render "ranked_list", title: "Top pages", note: "where visits start, last 30 days", rows: @top_pages %>
+  <%= render "ranked_list", title: "Where visitors come from", note: "last 30 days", rows: @top_referrers %>
+  <%= render "ranked_list", title: "Devices", note: "last 30 days", rows: @top_devices %>
+  <%= render "ranked_list", title: "Browsers", note: "last 30 days", rows: @top_browsers %>
+  <%= render "ranked_list", title: "Most-read posts", note: "all time",
+             rows: @most_read_posts.map { |post| [ post.title, post.views_count, post_path(post) ] } %>
+</div>

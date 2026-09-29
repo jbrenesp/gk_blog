@@ -1,6 +1,7 @@
 class Ahoy::Store < Ahoy::DatabaseStore
   def exclude?
-    super || (user && user.admin?)
+    # The login page is excluded too: admins aren't signed in yet when they load it
+    super || (user && user.admin?) || controller.is_a?(Devise::SessionsController)
   end
 end
 

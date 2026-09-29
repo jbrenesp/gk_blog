@@ -916,3 +916,69 @@ footer p {
     font-size: 0.85rem;
   }
 }
+/* =========================
+   19. COOKIE BANNER
+========================= */
+
+.cookie-banner {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: 1000;
+  /* bottom-right corner, clear of the centered "Enter the Blog" button */
+  width: 400px;
+  max-width: calc(100% - 2 * var(--space-lg));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.cookie-banner p {
+  margin: 0;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+}
+
+/* undo the global form centering, which spreads the buttons apart */
+.cookie-banner-actions form {
+  margin: 0;
+}
+
+/* same size for both buttons, so declining is as easy as accepting */
+.cookie-banner-actions .btn,
+.cookie-banner-actions .btn-secondary {
+  margin-top: 0;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.cookie-banner-actions .btn {
+  border: 1px solid transparent;
+}
+
+footer a {
+  color: inherit;
+}
+
+@media (max-width: 480px) {
+  .cookie-banner-actions form {
+    flex: 1;
+  }
+
+  .cookie-banner-actions .btn,
+  .cookie-banner-actions .btn-secondary {
+    width: 100%;
+  }
+}

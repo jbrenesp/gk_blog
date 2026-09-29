@@ -101,7 +101,14 @@
     </main>
 
     <footer>
-      <p>© <%= Time.now.year %> Butter & Stars Blog · All rights reserved</p>
+      <p>
+        © <%= Time.now.year %> Butter & Stars Blog · All rights reserved
+        <% if cookie_consent %>
+          · <%= link_to "Cookie settings", cookie_consent_path, data: { turbo_method: :delete } %>
+        <% end %>
+      </p>
     </footer>
+
+    <%= render "shared/cookie_banner" unless cookie_consent %>
   </body>
 </html>

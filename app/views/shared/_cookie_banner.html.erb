@@ -1,0 +1,11 @@
+<div class="cookie-banner" role="region" aria-label="Cookie consent">
+  <p>
+    We'd like to use cookies to understand how readers use this blog.
+    They're only set if you accept, and you can change your mind anytime from "Cookie settings" at the bottom of the page.
+  </p>
+
+  <div class="cookie-banner-actions">
+    <%= button_to "Decline", cookie_consent_path, params: { choice: "declined" }, class: "btn-secondary" %>
+    <%= button_to "Accept", cookie_consent_path, params: { choice: "accepted" }, class: "btn" %>
+  </div>
+</div>

@@ -7,6 +7,9 @@ end
 
 Ahoy.cookies = true
 
+# store 1.2.3.0 instead of 1.2.3.4
+Ahoy.mask_ips = true
+
 # set to true for JavaScript tracking
 Ahoy.api = false
 

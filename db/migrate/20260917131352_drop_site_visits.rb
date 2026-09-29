@@ -1,6 +1,6 @@
 class DropSiteVisits < ActiveRecord::Migration[8.1]
   def up
-    drop_table :site_visits
+    drop_table :site_visits, if_exists: true
   end
 
   def down

@@ -4,7 +4,7 @@ class Ahoy::Store < Ahoy::DatabaseStore
   end
 end
 
-Ahoy.cookies = :none
+Ahoy.cookies = true
 
 # set to true for JavaScript tracking
 Ahoy.api = false

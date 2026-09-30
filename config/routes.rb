@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   get "blog", to: "posts#blog", as: :blog
+  get "sitemap.xml", to: "sitemaps#show", as: :sitemap, defaults: { format: :xml }
 
   resource :cookie_consent, only: [ :create, :destroy ]
 

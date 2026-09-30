@@ -1,3 +1,25 @@
+<% content_for :title, @post.title %>
+<% content_for :description, @post.plain_excerpt.truncate(160, separator: " ").presence || MetaTagsHelper::SITE_DESCRIPTION %>
+<% content_for :og_type, "article" %>
+<% if (image = @post.share_image) %>
+  <% content_for :share_image, rails_blob_url(image) %>
+<% end %>
+<% content_for :head do %>
+  <script type="application/ld+json">
+    <%= json_escape({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: @post.title,
+      description: content_for(:description),
+      image: share_image_url,
+      datePublished: @post.created_at.iso8601,
+      dateModified: @post.updated_at.iso8601,
+      url: canonical_url,
+      publisher: { "@type": "Organization", name: MetaTagsHelper::SITE_NAME }
+    }.to_json).html_safe %>
+  </script>
+<% end %>
+
 <%= render @post %>
 
 <% if @post.images.attached? %>

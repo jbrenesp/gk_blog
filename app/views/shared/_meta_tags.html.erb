@@ -1,0 +1,12 @@
+<title><%= page_title %></title>
+<meta name="description" content="<%= meta_description %>">
+<link rel="canonical" href="<%= canonical_url %>">
+
+<%# Link previews (WhatsApp, Instagram, Facebook, X...) %>
+<meta property="og:site_name" content="<%= MetaTagsHelper::SITE_NAME %>">
+<meta property="og:type" content="<%= content_for?(:og_type) ? content_for(:og_type) : "website" %>">
+<meta property="og:title" content="<%= content_for?(:title) ? content_for(:title) : MetaTagsHelper::SITE_NAME %>">
+<meta property="og:description" content="<%= meta_description %>">
+<meta property="og:url" content="<%= canonical_url %>">
+<meta property="og:image" content="<%= share_image_url %>">
+<meta name="twitter:card" content="summary_large_image">

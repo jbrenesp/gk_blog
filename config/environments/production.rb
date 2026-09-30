@@ -22,7 +22,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Assume all access is happening through a SSL-terminating reverse proxy.
-  # config.assume_ssl = true
+  config.assume_ssl = true
 
   # Force all access over SSL.
   # config.force_ssl = true

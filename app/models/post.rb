@@ -10,6 +10,11 @@ class Post < ApplicationRecord
       body.embeds.first
     end
 
+    # First picture in the post, used for link previews
+    def share_image
+      images.find(&:image?) || body.embeds.find(&:image?)
+    end
+
    def plain_excerpt
     html = body.to_s.gsub(%r{</(p|div|li|h[1-6])>|<br\s*/?>}i, '\0 ')
     fragment = Nokogiri::HTML::DocumentFragment.parse(html)

@@ -1113,7 +1113,7 @@ footer a {
   transform: translateX(-50%);
   display: grid;
   grid-template-columns: 1.02fr 0.98fr;
-  align-items: center;
+  align-items: start;
   gap: 3.5rem;
   padding: var(--space-xl) 0;
 }

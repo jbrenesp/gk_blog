@@ -1125,10 +1125,6 @@ footer a {
   color: var(--color-text);
 }
 
-.home-intro-text .btn {
-  margin-top: var(--space-md);
-}
-
 .home-intro-photo {
   width: 100%;
   height: auto;

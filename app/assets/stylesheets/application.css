@@ -1139,16 +1139,15 @@ footer a {
   display: block;
 }
 
-/* second button sits where the dog is looking (up and to the right) */
+/* second button sits in the photo's top-right corner, where the dog is looking */
 .home-intro-figure {
   position: relative;
 }
 
 .home-intro-photo-btn {
   position: absolute;
-  top: 10%;
-  left: 70%;
-  transform: translate(-50%, -50%);
+  top: var(--space-lg);
+  right: var(--space-lg);
   margin-top: 0;
   white-space: nowrap;
   /* frosted glass, so it reads as part of the photo rather than a copy of the black button */
@@ -1167,7 +1166,7 @@ footer a {
 .home-intro-photo-btn:hover {
   background-color: rgba(255, 255, 255, 0.85);
   color: var(--color-text);
-  transform: translate(-50%, -50%) scale(1.04);
+  transform: scale(1.04);
 }
 
 /* phones and small tablets: photo on top, text below */

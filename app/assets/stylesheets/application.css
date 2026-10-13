@@ -1136,8 +1136,8 @@ footer a {
   object-fit: cover;
   display: block;
   /* fade every edge into the page background, keeping the dog's face sharp */
-  --fade-x: linear-gradient(to right, transparent 0%, #000 15%, #000 87%, transparent 100%);
-  --fade-y: linear-gradient(to bottom, transparent 0%, #000 8%, #000 80%, transparent 100%);
+  --fade-x: linear-gradient(to right, transparent 0%, #000 1.5%, #000 98.7%, transparent 100%);
+  --fade-y: linear-gradient(to bottom, transparent 0%, #000 0.8%, #000 98%, transparent 100%);
   -webkit-mask-image: var(--fade-x), var(--fade-y);
   -webkit-mask-composite: source-in;
   mask-image: var(--fade-x), var(--fade-y);

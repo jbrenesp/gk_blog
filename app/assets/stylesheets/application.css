@@ -1134,9 +1134,14 @@ footer a {
   height: auto;
   max-height: 78vh;
   object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
   display: block;
+  /* fade every edge into the page background, keeping the dog's face sharp */
+  --fade-x: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%);
+  --fade-y: linear-gradient(to bottom, transparent 0%, #000 12%, #000 72%, transparent 100%);
+  -webkit-mask-image: var(--fade-x), var(--fade-y);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--fade-x), var(--fade-y);
+  mask-composite: intersect;
 }
 
 /* second button sits in the photo's top-right corner, where the dog is looking */

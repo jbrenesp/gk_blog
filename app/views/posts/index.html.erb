@@ -1,7 +1,11 @@
-<div class="home-cover-page">
-  <%= image_tag "butter-front_page.jpeg", alt: "Butter and Stars" %>
+<section class="home-intro">
+  <div class="home-intro-text">
+    <p>Hi, thank you for visiting my blog! I am a software developer, before creating this website I didn’t know I liked to write… turns out it brings the creative part of me. Here you will find posts about everyday life, sports, food, travel, kids, family and pretty much anything that I have been inspired to write.</p>
 
-  <div class="home-cover-button">
+    <p>Even though I am a software developer and I use AI to code, for this blog my rules are that what you read is completely written by me and the photographs on the posts are either taken by me or I am in the photo.</p>
+
     <%= link_to "Enter the Blog", blog_path, class: "btn" %>
   </div>
-</div>
+
+  <%= image_tag "home-photo.jpg", alt: "A scruffy ginger dog looking up at the camera", class: "home-intro-photo", width: 853, height: 1280 %>
+</section>

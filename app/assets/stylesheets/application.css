@@ -819,45 +819,6 @@ footer p {
   text-align: center !important;
 }
 
-/* Front page image */
-.home-cover-page {
-  position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-top: calc(var(--space-xl) * -1);
-  margin-bottom: calc(var(--space-xl) * -1);
-}
-
-.home-cover-page img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.home-cover-button {
-  position: fixed;
-  top: 85%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 999;
-}
-
-.home-cover-button .btn {
-  background: white;
-  border: 1.5px solid #111;
-  color: #111;
-  border-radius: 8px;
-  font-family: Georgia, "Times New Roman", serif;
-  letter-spacing: 0.3px;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.home-cover-button .btn:hover {
-  background: #111;
-  color: #fff;
-}
-
-
 @media (max-width: 768px) {
   header {
     padding: 0.75rem 1rem;
@@ -877,43 +838,6 @@ footer p {
     left: auto;
   }
 
-  .home-cover-button .btn {
-    white-space: nowrap;
-  }
-
-  .home-cover-button {
-    top: 45%;
-  }
-
-  .home-cover-page {
-    position: relative;
-    left: 50%;
-    right: 50%;
-    width: 100vw;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    margin-top: calc(var(--space-xl) * -1);
-    margin-bottom: calc(var(--space-xl) * -1);
-
-    height: calc(100vh - 138px);
-    height: calc(100dvh - 138px);
-    overflow: hidden;
-  }
-
-  .home-cover-page img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
-}
-
-@media (max-width: 480px) {
-  .home-cover-button .btn {
-    padding: 0.45rem 1rem;
-    font-size: 0.85rem;
-  }
 }
 /* =========================
    19. COOKIE BANNER
@@ -1176,4 +1100,94 @@ footer a {
   height: 100%;
   background-color: var(--color-primary-dark);
   border-radius: var(--radius-pill);
+}
+
+/* =========================
+   21. HOME PAGE
+========================= */
+
+/* wider than the 800px content column, centered on the page */
+.home-intro {
+  width: min(1040px, calc(100vw - 2 * var(--space-lg)));
+  margin-left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  align-items: start;
+  gap: 3.5rem;
+  padding: var(--space-xl) 0;
+}
+
+.home-intro-text p {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  margin: 0 0 1.25rem;
+  color: var(--color-text);
+}
+
+.home-intro-photo {
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  object-fit: cover;
+  display: block;
+  /* fade every edge into the page background, keeping the dog's face sharp */
+  --fade-x: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  --fade-y: linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask-image: var(--fade-x), var(--fade-y);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--fade-x), var(--fade-y);
+  mask-composite: intersect;
+}
+
+/* second button sits in the photo's top-right corner, where the dog is looking */
+.home-intro-figure {
+  position: relative;
+}
+
+.home-intro-photo-btn {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  margin-top: 0;
+  white-space: nowrap;
+  /* frosted glass, so it reads as part of the photo rather than a copy of the black button */
+  padding: 0.55rem 1.3rem;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: var(--color-text);
+  font-weight: 500;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.home-intro-photo-btn:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: var(--color-text);
+  transform: scale(1.04);
+}
+
+/* phones and small tablets: photo on top, text below */
+@media (max-width: 768px) {
+  .home-intro {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    padding: 0;
+  }
+
+  .home-intro-figure {
+    order: -1;
+  }
+
+  .home-intro-photo {
+    max-height: 63vh;
+    object-position: center 30%;
+  }
+
+  .home-intro-text p {
+    font-size: 1rem;
+  }
 }

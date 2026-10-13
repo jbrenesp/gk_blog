@@ -1151,7 +1151,23 @@ footer a {
   transform: translate(-50%, -50%);
   margin-top: 0;
   white-space: nowrap;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  /* frosted glass, so it reads as part of the photo rather than a copy of the black button */
+  padding: 0.55rem 1.3rem;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: var(--color-text);
+  font-weight: 500;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.home-intro-photo-btn:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: var(--color-text);
+  transform: translate(-50%, -50%) scale(1.04);
 }
 
 /* phones and small tablets: photo on top, text below */

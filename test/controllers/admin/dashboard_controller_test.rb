@@ -48,13 +48,19 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_select ".ranked-list-label", text: "Bot Browser", count: 0
   end
 
-  test "lists most-read posts" do
+  test "counts post views from real browsers, once per visit" do
+    reader = visit
+    2.times { reader.events.create!(name: Ahoy::Event::PAGE_VIEW, properties: { path: "/posts/#{@post.id}" }, time: Time.current) }
+    visit.events.create!(name: Ahoy::Event::PAGE_VIEW, properties: { path: "/posts/#{@post.id}" }, time: Time.current)
+    visit.events.create!(name: Ahoy::Event::PAGE_VIEW, properties: { path: "/blog" }, time: Time.current)
+
     sign_in users(:one)
     get admin_dashboard_path
 
+    assert_select ".dashboard-card", text: /Total Views\s*2/
     assert_select ".dashboard-panel", text: /Most-read posts/ do
       assert_select ".ranked-list-label", text: "Butter tips"
-      assert_select ".ranked-list-count", text: "42"
+      assert_select ".ranked-list-count", text: "2"
     end
   end
 

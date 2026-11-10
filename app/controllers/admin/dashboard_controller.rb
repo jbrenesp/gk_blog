@@ -12,7 +12,8 @@ class Admin::DashboardController < ApplicationController
     @users_count = User.count
     @admin_count = User.where(role: :admin).count
 
-    @total_views = Post.sum(:views_count).to_i
+    post_views = post_views_by_id
+    @total_views = post_views.values.sum
 
     # Bots also create visits, but don't run the JavaScript that reports page views
     visits = Ahoy::Visit.with_page_views
@@ -29,13 +30,23 @@ class Admin::DashboardController < ApplicationController
     @top_devices = top_values(recent, :device_type)
     @top_browsers = top_values(recent, :browser)
 
-    @most_read_posts = Post.published.where("views_count > 0").order(views_count: :desc).limit(5)
+    @most_read_posts = Post.published.where(id: post_views.keys)
+                           .map { |post| [ post, post_views[post.id] ] }
+                           .max_by(5) { |_, views| views }
   end
 
   private
 
   def require_admin
     redirect_to root_path, alert: "Not authorized" unless current_user&.admin?
+  end
+
+  # { post_id => views } from page views reported by real browsers, counting
+  # each post once per visit
+  def post_views_by_id
+    Ahoy::Event.where(name: Ahoy::Event::PAGE_VIEW).where("ahoy_events.properties ->> 'path' ~ '^/posts/[0-9]+$'")
+               .group(Arel.sql("ahoy_events.properties ->> 'path'")).distinct.count(:visit_id)
+               .transform_keys { |post_path| post_path[POST_PATH, 1].to_i }
   end
 
   # { date => count } for every day, including days without visits

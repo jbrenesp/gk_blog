@@ -61,5 +61,5 @@
   <%= render "ranked_list", title: "Devices", note: "last 30 days", rows: @top_devices %>
   <%= render "ranked_list", title: "Browsers", note: "last 30 days", rows: @top_browsers %>
   <%= render "ranked_list", title: "Most-read posts", note: "all time",
-             rows: @most_read_posts.map { |post| [ post.title, post.views_count, post_path(post) ] } %>
+             rows: @most_read_posts.map { |post, views| [ post.title, views, post_path(post) ] } %>
 </div>

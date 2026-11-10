@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "sitemap.xml", to: "sitemaps#show", as: :sitemap, defaults: { format: :xml }
 
   resource :cookie_consent, only: [ :create, :destroy ]
+  resources :page_views, only: :create
 
   resources :users, only: [ :index, :new, :create, :update ]
 

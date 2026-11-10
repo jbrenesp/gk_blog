@@ -3,6 +3,8 @@ class Ahoy::Event < ApplicationRecord
 
   self.table_name = "ahoy_events"
 
+  PAGE_VIEW = "Page view"
+
   belongs_to :visit
   belongs_to :user, optional: true
 end

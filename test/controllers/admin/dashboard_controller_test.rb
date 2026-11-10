@@ -38,6 +38,16 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_select ".ranked-list-label", text: "Chrome"
   end
 
+  test "only counts visits with a page view" do
+    visit(landing_page: "http://www.example.com/?rest_route=/batch/v1", referring_domain: "spam.example", browser: "Bot Browser", page_view: false)
+    sign_in users(:one)
+    get admin_dashboard_path
+
+    assert_select ".dashboard-card", text: /Site Visits \(Total\)\s*5/
+    assert_select ".ranked-list-label", text: "spam.example", count: 0
+    assert_select ".ranked-list-label", text: "Bot Browser", count: 0
+  end
+
   test "lists most-read posts" do
     sign_in users(:one)
     get admin_dashboard_path
@@ -64,7 +74,9 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
 
   private
 
-  def visit(started_at: 1.hour.ago, **attributes)
-    Ahoy::Visit.create!(visit_token: SecureRandom.uuid, visitor_token: SecureRandom.uuid, started_at: started_at, **attributes)
+  def visit(started_at: 1.hour.ago, page_view: true, **attributes)
+    visit = Ahoy::Visit.create!(visit_token: SecureRandom.uuid, visitor_token: SecureRandom.uuid, started_at: started_at, **attributes)
+    visit.events.create!(name: Ahoy::Event::PAGE_VIEW, time: started_at) if page_view
+    visit
   end
 end

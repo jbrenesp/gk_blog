@@ -23,3 +23,16 @@ function setupDropdown() {
 }
 
 document.addEventListener("turbo:load", setupDropdown);
+// Lets the dashboard tell real visitors (who run JavaScript) from bots
+function trackPageView() {
+  const token = document.querySelector('meta[name="csrf-token"]')?.content;
+
+  fetch("/page_views", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-CSRF-Token": token },
+    body: JSON.stringify({ path: window.location.pathname }),
+    keepalive: true
+  }).catch(() => {});
+}
+
+document.addEventListener("turbo:load", trackPageView);

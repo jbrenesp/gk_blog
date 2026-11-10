@@ -14,13 +14,15 @@ class Admin::DashboardController < ApplicationController
 
     @total_views = Post.sum(:views_count).to_i
 
-    @total_visits = Ahoy::Visit.count
-    @visits_today = Ahoy::Visit.where(started_at: Time.zone.now.beginning_of_day..).count
-    @visits_this_week = Ahoy::Visit.where(started_at: 7.days.ago..).count
-    @visits_this_month = Ahoy::Visit.where(started_at: 30.days.ago..).count
+    # Bots also create visits, but don't run the JavaScript that reports page views
+    visits = Ahoy::Visit.with_page_views
+    @total_visits = visits.count
+    @visits_today = visits.where(started_at: Time.zone.now.beginning_of_day..).count
+    @visits_this_week = visits.where(started_at: 7.days.ago..).count
+    @visits_this_month = visits.where(started_at: 30.days.ago..).count
 
     # Last 30 days, including today
-    recent = Ahoy::Visit.where(started_at: 29.days.ago.beginning_of_day..)
+    recent = visits.where(started_at: 29.days.ago.beginning_of_day..)
     @visits_by_day = visits_by_day(recent)
     @top_pages = top_pages(recent)
     @top_referrers = top_referrers(recent)

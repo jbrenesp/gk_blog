@@ -11,9 +11,10 @@ module MetaTagsHelper
     content_for?(:description) ? content_for(:description) : SITE_DESCRIPTION
   end
 
-  # The page's URL without query strings, so ?utm_source=... links count as the same page
+  # The page's URL on the site's main domain, without query strings, so links to
+  # other domains or with ?utm_source=... count as the same page
   def canonical_url
-    request.base_url + request.path
+    (Rails.configuration.x.canonical_url || request.base_url) + request.path
   end
 
   def share_image_url

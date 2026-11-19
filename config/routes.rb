@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  # The site also answers without www; send visitors and search engines to www
+  constraints(host: "butterandstars.com") do
+    get "(*path)", to: redirect { |_params, request| "https://www.butterandstars.com#{request.fullpath}" }, format: false
+  end
+
   devise_for :users, path: "auth", path_names: { sign_in: "login" },
   skip: [ :registrations ]
   root "posts#index"

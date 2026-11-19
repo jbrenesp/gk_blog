@@ -24,6 +24,9 @@ Rails.application.configure do
   # Assume all access is happening through a SSL-terminating reverse proxy.
   config.assume_ssl = true
 
+  # The one address search engines should index; pages name it as their canonical URL
+  config.x.canonical_url = "https://www.butterandstars.com"
+
   # Force all access over SSL.
   # config.force_ssl = true
 

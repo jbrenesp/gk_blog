@@ -38,6 +38,27 @@ class MetaTagsTest < ActionDispatch::IntegrationTest
     assert_select "meta[property='og:image'][content*='/rails/active_storage/blobs/'][content$='photo.png']"
   end
 
+  test "canonical URL uses the site's main domain" do
+    Rails.configuration.x.canonical_url = "https://www.butterandstars.com"
+    host! "butterandstars-production.up.railway.app"
+    get post_path(@post)
+
+    assert_select "link[rel=canonical][href=?]", "https://www.butterandstars.com/posts/#{@post.id}"
+  ensure
+    Rails.configuration.x.canonical_url = nil
+  end
+
+  test "redirects the domain without www to www" do
+    host! "butterandstars.com"
+
+    get "/posts/#{@post.id}?utm_source=instagram"
+    assert_response :moved_permanently
+    assert_redirected_to "https://www.butterandstars.com/posts/#{@post.id}?utm_source=instagram"
+
+    get "/"
+    assert_redirected_to "https://www.butterandstars.com/"
+  end
+
   test "sitemap lists published posts only" do
     draft = posts(:two)
     draft.update!(status: :draft)

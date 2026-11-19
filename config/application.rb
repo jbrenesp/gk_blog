@@ -23,5 +23,8 @@ module GkBlog
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Set in production; elsewhere pages use the address they were requested on
+    config.x.canonical_url = nil
   end
 end
